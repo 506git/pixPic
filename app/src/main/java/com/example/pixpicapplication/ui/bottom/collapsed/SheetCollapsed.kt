@@ -21,8 +21,7 @@ fun SheetCollapsed(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(72.dp)
-            .background(MaterialTheme.colors.primary)
+            .height(150.dp)
             .graphicsLayer(alpha = 1f - currentFraction),
         verticalAlignment = Alignment.CenterVertically
     ) {

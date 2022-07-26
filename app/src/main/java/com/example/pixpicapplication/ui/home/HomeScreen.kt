@@ -12,9 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.pixpicapplication.ui.bottom.SheetCollapsed
 import com.example.pixpicapplication.ui.bottom.SheetContent
 import com.example.pixpicapplication.ui.bottom.SheetExpanded
+import com.example.pixpicapplication.ui.bottom.collapsed.SheetCollapsedContent
+import com.example.pixpicapplication.ui.bottom.expanded.SheetExpandedContent
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
@@ -23,7 +26,6 @@ fun HomeScreen() {
         bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
     )
     val coroutineScope = rememberCoroutineScope()
-
     BottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
         sheetShape = RoundedCornerShape(
@@ -35,61 +37,20 @@ fun HomeScreen() {
         sheetElevation = 8.dp,
         sheetContent = {
             SheetContent {
-                SheetExpanded {
-                    SheetExpandedContent(bottomSheetScaffoldState.currentFraction)
+                SheetExpanded(currentFraction = bottomSheetScaffoldState.currentFraction) {
+                    SheetExpandedContent()
                 }
                 SheetCollapsed(
                     isCollapsed = bottomSheetScaffoldState.bottomSheetState.isCollapsed,
                     currentFraction = bottomSheetScaffoldState.currentFraction,
                 ) {
-                    SheetCollapsedContent(bottomSheetScaffoldState.currentFraction)
+                    SheetCollapsedContent()
                 }
             }
         },
         sheetPeekHeight = 150.dp
     ){
-        Text(text = "${bottomSheetScaffoldState.currentFraction}")
-//        MainContent()
-    }
-}
-
-@Composable
-fun SheetCollapsedContent(currentFraction: Float) {
-    Column(modifier = Modifier
-        .background(Color(0xffFDD835))
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .padding(start = 10.dp, top = 0.dp, end = 10.dp, bottom = 0.dp)
-    ) {
-        Spacer(modifier = Modifier.height(15.dp))
-        OutlinedButton(onClick = { /*TODO*/ }) {
-
-        }
-        OutlinedButton(onClick = { /*TODO*/ }) {
-
-        }
-        OutlinedButton(onClick = { /*TODO*/ }) {
-
-        }
-    }
-}
-
-@Composable
-fun SheetExpandedContent(currentFraction: Float){
-    Column(modifier = Modifier
-        .background(Color(0xffF00835))
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .padding(start = 10.dp, top = 0.dp, end = 10.dp, bottom = 0.dp)
-    ) {
-        Text(text = "hi")
-    }
-}
-
-@Composable
-fun MainContent(){
-    Column() {
-        Text(text = "hi")
+        ImageContent()
     }
 }
 
