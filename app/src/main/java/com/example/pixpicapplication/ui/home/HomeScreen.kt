@@ -48,7 +48,7 @@ fun HomeScreen() {
                 }
             }
         },
-        sheetPeekHeight = 150.dp
+        sheetPeekHeight = 170.dp
     ){
         ImageContent()
     }

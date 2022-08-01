@@ -23,6 +23,7 @@ fun ImageContent() {
 
     ){
         Text(text = "hi")
+        Spacer(modifier = Modifier.height(15.dp))
         Image(painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "mainImage",
             modifier = Modifier

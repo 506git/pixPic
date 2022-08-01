@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">pixPicApplication</string>
+    <string name="btn_photo_desc">refresh</string>
 </resources>
