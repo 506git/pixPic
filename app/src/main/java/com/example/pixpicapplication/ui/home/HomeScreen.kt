@@ -1,23 +1,21 @@
 package com.example.pixpicapplication.ui.home
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
+//import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.pixpicapplication.ui.bottom.SheetCollapsed
+import com.example.pixpicapplication.ui.bottom.collapsed.SheetCollapsed
 import com.example.pixpicapplication.ui.bottom.SheetContent
-import com.example.pixpicapplication.ui.bottom.SheetExpanded
+import com.example.pixpicapplication.ui.bottom.expanded.SheetExpanded
 import com.example.pixpicapplication.ui.bottom.collapsed.SheetCollapsedContent
 import com.example.pixpicapplication.ui.bottom.expanded.SheetExpandedContent
+import com.example.pixpicapplication.ui.theme.PixPicApplicationTheme
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
@@ -25,6 +23,8 @@ fun HomeScreen() {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
     )
+    //        backgroundColor = MaterialTheme.colorScheme.surface,
+//        sheetBackgroundColor = MaterialTheme.colorScheme.background,
     val coroutineScope = rememberCoroutineScope()
     BottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
@@ -35,16 +35,18 @@ fun HomeScreen() {
             topEnd = 15.dp
         ),
         sheetElevation = 8.dp,
+        backgroundColor = MaterialTheme.colors.surface,
+        sheetBackgroundColor = MaterialTheme.colors.background,
         sheetContent = {
             SheetContent {
-                SheetExpanded(currentFraction = bottomSheetScaffoldState.currentFraction) {
-                    SheetExpandedContent()
-                }
                 SheetCollapsed(
                     isCollapsed = bottomSheetScaffoldState.bottomSheetState.isCollapsed,
                     currentFraction = bottomSheetScaffoldState.currentFraction,
                 ) {
                     SheetCollapsedContent()
+                }
+                SheetExpanded(currentFraction = bottomSheetScaffoldState.currentFraction) {
+                    SheetExpandedContent()
                 }
             }
         },
@@ -52,6 +54,21 @@ fun HomeScreen() {
     ){
         ImageContent()
     }
+}
+
+@Preview
+@Composable
+fun prevHomeScreen(){
+    HomeScreen()
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun prevDarkHomeScreen(){
+    PixPicApplicationTheme() {
+        HomeScreen()
+    }
+
 }
 
 @OptIn(ExperimentalMaterialApi::class)

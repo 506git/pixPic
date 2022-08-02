@@ -1,4 +1,4 @@
-package com.example.pixpicapplication.ui.bottom
+package com.example.pixpicapplication.ui.bottom.collapsed
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -21,7 +21,8 @@ fun SheetCollapsed(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(150.dp)
+            .background(MaterialTheme.colors.background)
+            .height(170.dp)
             .graphicsLayer(alpha = 1f - currentFraction),
         verticalAlignment = Alignment.CenterVertically
     ) {

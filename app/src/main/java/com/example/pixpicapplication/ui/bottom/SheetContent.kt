@@ -1,25 +1,26 @@
 package com.example.pixpicapplication.ui.bottom
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
-import com.example.pixpicapplication.R
 
 @Composable
 fun SheetContent(
     heightFraction: Float = 0.9f,
-    content: @Composable BoxScope.() -> Unit
+    content: @Composable () -> Unit
 ) {
-    Box(
+    Surface(
         modifier = Modifier
-            .background(colorResource(id = R.color.purple_200))
             .fillMaxWidth()
+            .background(MaterialTheme.colors.background)
             .fillMaxHeight(fraction = heightFraction)
     ) {
         content()

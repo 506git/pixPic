@@ -1,4 +1,4 @@
-package com.example.pixpicapplication.ui.bottom
+package com.example.pixpicapplication.ui.bottom.expanded
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 fun SheetExpanded(currentFraction: Float, content: @Composable RowScope.() -> Unit) {
     Row(modifier = Modifier
         .fillMaxSize()
+        .background(MaterialTheme.colors.background)
         .graphicsLayer(alpha = currentFraction),
         verticalAlignment = Alignment.CenterVertically
     ) {

@@ -28,8 +28,7 @@ fun SheetCollapsedContent() {
     val actions = remember(){
         ItemActions(context)
     }
-
-    Column() {
+    Column(Modifier.background(MaterialTheme.colors.background)) {
         TextField(value = "hi", onValueChange = {}, modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(10.dp))
         Row(modifier = Modifier
