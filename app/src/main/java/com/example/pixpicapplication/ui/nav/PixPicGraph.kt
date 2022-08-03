@@ -1,4 +1,4 @@
-package com.example.pixpicapplication.ui
+package com.example.pixpicapplication.ui.nav
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ScaffoldState
@@ -11,10 +11,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.pixpicapplication.ui.gallery.GalleryScreen
 import com.example.pixpicapplication.ui.home.HomeScreen
-import com.example.pixpicapplication.ui.nav.MainDestination
 import com.example.pixpicapplication.ui.splash.SplashScreen
-import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,7 +29,7 @@ fun PixPicGraph(
 
     NavHost(navController = navController, startDestination = startDestination){
         composable(MainDestination.HOME_ROUTE) {
-            HomeScreen()
+            HomeScreen(goGallery = actions.goGallery)
         }
         composable(MainDestination.SPLASH_ROUTE){
             SplashScreen(goMain = actions.goMain)
@@ -39,7 +38,7 @@ fun PixPicGraph(
 
         }
         composable(MainDestination.GALLERY_ROUTE){
-
+            GalleryScreen()
         }
     }
 }
@@ -58,6 +57,12 @@ class MainActions(navController: NavController){
 
     val goHome : () -> Unit = {
 
+    }
+
+    val goGallery : () -> Unit = {
+        navController.apply {
+            navigate(MainDestination.GALLERY_ROUTE)
+        }
     }
 
     val goBack : () -> Unit = {

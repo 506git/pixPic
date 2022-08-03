@@ -20,16 +20,26 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.pixpicapplication.R
+import com.example.pixpicapplication.ui.nav.MainActions
+import com.example.pixpicapplication.ui.nav.MainDestination
 
 @Composable
-fun SheetCollapsedContent() {
+fun SheetCollapsedContent(goGallery: () -> Unit) {
     val context = LocalContext.current
-    val actions = remember(){
-        ItemActions(context)
+    val navController: NavHostController = rememberNavController()
+    val actions = remember(navController){
+        ItemActions(context, navController)
     }
-    Column(Modifier.background(MaterialTheme.colors.background)) {
-        TextField(value = "hi", onValueChange = {}, modifier = Modifier.fillMaxWidth())
+
+    val mainActions = remember(navController){
+        MainActions(navController)
+    }
+    Column() {
+        TextField(value = "", onValueChange = {}, modifier = Modifier.fillMaxWidth(), placeholder = { Text("Texxt hear") })
         Spacer(modifier = Modifier.height(10.dp))
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -38,9 +48,10 @@ fun SheetCollapsedContent() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            ActiveButton("photo", painterResource(id = R.drawable.btn_gallery), actions.photo)
+            ActiveButton("photo", painterResource(id = R.drawable.btn_gallery), goGallery)
             ActiveButton("start", painterResource(id = R.drawable.btn_on), actions.start)
             ActiveButton("reset", painterResource(id = R.drawable.btn_refresh), actions.reset)
+            ActiveButton("test", painterResource(id = R.drawable.btn_refresh), actions.test)
         }
     }
 }
@@ -64,15 +75,19 @@ fun ActiveButton(title: String, painter: Painter, actions: () -> Unit){
                     .align(Alignment.CenterHorizontally),
                 tint = Color.Unspecified
             )
-            Text(text = title, fontSize = 12.sp)
+            Text(text = title, fontSize = 12.sp, color = Color.Black)
         }
     }
 }
 
 
-class ItemActions(context: Context){
+class ItemActions(context: Context, navController : NavController){
     val photo : () -> Unit = {
         Toast.makeText(context,"photo",Toast.LENGTH_LONG).show()
+        navController.apply {
+            popBackStack()
+            navigate(MainDestination.HOME_ROUTE)
+        }
     }
 
     val start : () -> Unit = {
@@ -81,6 +96,12 @@ class ItemActions(context: Context){
 
     val reset : () -> Unit = {
         Toast.makeText(context,"reset",Toast.LENGTH_LONG).show()
+    }
+
+    val test : () -> Unit = {
+        navController.apply {
+            navigate(MainDestination.GALLERY_ROUTE)
+        }
     }
 }
 

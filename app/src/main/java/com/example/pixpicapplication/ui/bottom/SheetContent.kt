@@ -11,16 +11,17 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode.Companion.Color
+import com.example.pixpicapplication.R
 
 @Composable
 fun SheetContent(
     heightFraction: Float = 0.9f,
     content: @Composable () -> Unit
 ) {
-    Surface(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colors.background)
             .fillMaxHeight(fraction = heightFraction)
     ) {
         content()

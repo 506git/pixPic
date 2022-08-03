@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.sp
 fun SheetExpandedContent() {
     Column(modifier = Modifier
         .fillMaxWidth()
-        .background(MaterialTheme.colors.background)
         .fillMaxHeight()
         .padding(start = 10.dp, top = 0.dp, end = 10.dp, bottom = 0.dp)
     ) {

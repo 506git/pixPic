@@ -1,12 +1,14 @@
 package com.example.pixpicapplication.ui.home
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 //import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -19,12 +21,11 @@ import com.example.pixpicapplication.ui.theme.PixPicApplicationTheme
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(goGallery: () -> Unit) {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
     )
-    //        backgroundColor = MaterialTheme.colorScheme.surface,
-//        sheetBackgroundColor = MaterialTheme.colorScheme.background,
+
     val coroutineScope = rememberCoroutineScope()
     BottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
@@ -43,30 +44,33 @@ fun HomeScreen() {
                     isCollapsed = bottomSheetScaffoldState.bottomSheetState.isCollapsed,
                     currentFraction = bottomSheetScaffoldState.currentFraction,
                 ) {
-                    SheetCollapsedContent()
+                    SheetCollapsedContent(goGallery)
                 }
                 SheetExpanded(currentFraction = bottomSheetScaffoldState.currentFraction) {
                     SheetExpandedContent()
                 }
+
             }
         },
         sheetPeekHeight = 170.dp
-    ){
+    ) {
         ImageContent()
     }
 }
 
-@Preview
+@Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
-fun prevHomeScreen(){
-    HomeScreen()
+fun prevHomeScreen() {
+    PixPicApplicationTheme(darkTheme = false) {
+        HomeScreen {}
+    }
 }
 
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
-fun prevDarkHomeScreen(){
-    PixPicApplicationTheme() {
-        HomeScreen()
+fun prevDarkHomeScreen() {
+    PixPicApplicationTheme(darkTheme = true) {
+        HomeScreen {}
     }
 
 }

@@ -1,7 +1,6 @@
 package com.example.pixpicapplication
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.*
@@ -11,7 +10,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.pixpicapplication.ui.PixPicGraph
+import com.example.pixpicapplication.ui.nav.PixPicGraph
 import com.example.pixpicapplication.ui.theme.PixPicApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,9 +18,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Surface {
-                PixPicApplicationTheme {
-                    var navController = rememberNavController()
+            PixPicApplicationTheme {
+                Surface() {
+                    val navController = rememberNavController()
                     var coroutineScope = rememberCoroutineScope()
 
                     val scaffoldState = rememberScaffoldState()

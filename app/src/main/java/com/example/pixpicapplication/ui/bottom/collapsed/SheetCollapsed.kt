@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,7 +22,6 @@ fun SheetCollapsed(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colors.background)
             .height(170.dp)
             .graphicsLayer(alpha = 1f - currentFraction),
         verticalAlignment = Alignment.CenterVertically

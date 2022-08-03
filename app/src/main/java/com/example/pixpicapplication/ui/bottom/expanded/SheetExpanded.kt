@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.graphicsLayer
 fun SheetExpanded(currentFraction: Float, content: @Composable RowScope.() -> Unit) {
     Row(modifier = Modifier
         .fillMaxSize()
-        .background(MaterialTheme.colors.background)
         .graphicsLayer(alpha = currentFraction),
         verticalAlignment = Alignment.CenterVertically
     ) {
