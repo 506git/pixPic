@@ -4,6 +4,7 @@
     package="com.example.pixpicapplication">
 
     <application
+        android:name=".PicApp"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"

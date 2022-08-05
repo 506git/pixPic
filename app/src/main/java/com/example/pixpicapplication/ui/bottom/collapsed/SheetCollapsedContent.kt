@@ -51,7 +51,6 @@ fun SheetCollapsedContent(goGallery: () -> Unit) {
             ActiveButton("photo", painterResource(id = R.drawable.btn_gallery), goGallery)
             ActiveButton("start", painterResource(id = R.drawable.btn_on), actions.start)
             ActiveButton("reset", painterResource(id = R.drawable.btn_refresh), actions.reset)
-            ActiveButton("test", painterResource(id = R.drawable.btn_refresh), actions.test)
         }
     }
 }

@@ -62,7 +62,9 @@ fun EnterAnimation(content: @Composable () -> Unit) {
     var visible by remember { mutableStateOf(false) }
     AnimatedVisibility(
         visible = visible,
-        enter = expandIn()
+        enter = slideIn(tween(150, easing = LinearOutSlowInEasing)) { fullSize ->
+            IntOffset(-(fullSize.width - 200), (fullSize.height - 200))
+        }
     ){
         content()
     }
