@@ -44,6 +44,7 @@ private val DarkColors = darkColors(
     primary = Purple80,
     secondary = PurpleGrey80,
     surface = BlackMainColor,
+    onSurface = WhiteMainColor,
     background = GreenBottomColor,
 )
 
@@ -51,6 +52,7 @@ private val LightColors = lightColors(
     primary = Purple40,
     secondary = PurpleGrey40,
     surface = WhiteMainColor,
+    onSurface = BlackMainColor,
     background = GreenBottomColor,
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

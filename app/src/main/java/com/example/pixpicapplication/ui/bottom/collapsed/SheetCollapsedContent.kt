@@ -39,7 +39,7 @@ fun SheetCollapsedContent(goGallery: () -> Unit) {
         MainActions(navController)
     }
     Column() {
-        TextField(value = "", onValueChange = {}, modifier = Modifier.fillMaxWidth(), placeholder = { Text("Texxt hear") })
+        TextField(value = "", onValueChange = {}, modifier = Modifier.fillMaxWidth(), placeholder = { Text("Text hear") })
         Spacer(modifier = Modifier.height(10.dp))
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -95,12 +95,6 @@ class ItemActions(context: Context, navController : NavController){
 
     val reset : () -> Unit = {
         Toast.makeText(context,"reset",Toast.LENGTH_LONG).show()
-    }
-
-    val test : () -> Unit = {
-        navController.apply {
-            navigate(MainDestination.GALLERY_ROUTE)
-        }
     }
 }
 

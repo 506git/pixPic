@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.pixpicapplication.ui.gallery.GalleryScreen
 import com.example.pixpicapplication.ui.home.HomeScreen
 import com.example.pixpicapplication.ui.splash.SplashScreen
+import com.example.pixpicapplication.viewmodel.AuthViewModel
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,6 +33,7 @@ import kotlinx.coroutines.delay
 fun PixPicGraph(
     navController: NavHostController = rememberNavController(),
     scaffoldState: ScaffoldState = rememberScaffoldState(),
+    authViewModel: AuthViewModel,
     startDestination: String = MainDestination.SPLASH_ROUTE) {
 
     val context = LocalContext.current
@@ -44,7 +46,7 @@ fun PixPicGraph(
             HomeScreen(goGallery = actions.goGallery)
         }
         composable(MainDestination.SPLASH_ROUTE){
-            SplashScreen(goMain = actions.goMain)
+            SplashScreen(goMain = actions.goMain, authViewModel)
         }
         composable(MainDestination.LOGIN_ROUTE){
 

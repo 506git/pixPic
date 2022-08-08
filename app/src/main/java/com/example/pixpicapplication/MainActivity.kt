@@ -3,6 +3,7 @@ package com.example.pixpicapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -12,10 +13,13 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.pixpicapplication.ui.nav.PixPicGraph
 import com.example.pixpicapplication.ui.theme.PixPicApplicationTheme
+import com.example.pixpicapplication.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val authViewModel: AuthViewModel by viewModels()
+
     @ExperimentalMaterial3Api
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +34,8 @@ class MainActivity : ComponentActivity() {
                     Scaffold(scaffoldState = scaffoldState) {
                         PixPicGraph(
                             navController = navController,
-                            scaffoldState = scaffoldState
+                            scaffoldState = scaffoldState,
+                            authViewModel = authViewModel
                         )
                     }
                 }
